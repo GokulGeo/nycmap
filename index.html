@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <style>
+        #map {
+            width: 1755px;
+            height: 1168px;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="data/Joinedlayer_1.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[40.597187324500005,-74.10702580286578],[40.8874890355,-73.67057734713423]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a>');
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        var layer_MapboxStreetsv10_0 = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v10/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4M29iazA2Z2gycXA4N2pmbDZmangifQ.-g_vE53SD2WrJ6tFX7QHmA', {
+            opacity: 1.0,
+            attribution: '<a href="https://www.mapbox.com/about/maps/">© Mapbox © OpenStreetMap</a>',
+        });
+        layer_MapboxStreetsv10_0;
+        map.addLayer(layer_MapboxStreetsv10_0);
+        function pop_Joinedlayer_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><b>Count of rides: </b>' + (feature.properties['tipfare_count'] !== null ? Autolinker.link(String(feature.properties['tipfare_count'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><b>Median ratio of tip to fare:</b>' + (feature.properties['tipfare_median'] !== null ? Autolinker.link(String(feature.properties['tipfare_median'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Joinedlayer_1_0(feature) {
+            if (feature.properties['tipfare_median'] >= 0.000000 && feature.properties['tipfare_median'] <= 0.029286 ) {
+                return {
+                pane: 'pane_Joinedlayer_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.66)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(247,251,255,0.66)',
+            }
+            }
+            if (feature.properties['tipfare_median'] >= 0.029286 && feature.properties['tipfare_median'] <= 0.117647 ) {
+                return {
+                pane: 'pane_Joinedlayer_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.66)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(200,221,240,0.66)',
+            }
+            }
+            if (feature.properties['tipfare_median'] >= 0.117647 && feature.properties['tipfare_median'] <= 0.156250 ) {
+                return {
+                pane: 'pane_Joinedlayer_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.66)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(115,179,216,0.66)',
+            }
+            }
+            if (feature.properties['tipfare_median'] >= 0.156250 && feature.properties['tipfare_median'] <= 0.190693 ) {
+                return {
+                pane: 'pane_Joinedlayer_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.66)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(40,121,185,0.66)',
+            }
+            }
+            if (feature.properties['tipfare_median'] >= 0.190693 && feature.properties['tipfare_median'] <= 0.227912 ) {
+                return {
+                pane: 'pane_Joinedlayer_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.66)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(8,48,107,0.66)',
+            }
+            }
+        }
+        map.createPane('pane_Joinedlayer_1');
+        map.getPane('pane_Joinedlayer_1').style.zIndex = 401;
+        map.getPane('pane_Joinedlayer_1').style['mix-blend-mode'] = 'normal';
+        var layer_Joinedlayer_1 = new L.geoJson(json_Joinedlayer_1, {
+            attribution: '',
+            pane: 'pane_Joinedlayer_1',
+            onEachFeature: pop_Joinedlayer_1,
+            style: style_Joinedlayer_1_0,
+        });
+        bounds_group.addLayer(layer_Joinedlayer_1);
+        map.addLayer(layer_Joinedlayer_1);
+        setBounds();
+        </script>
+    </body>
+</html>
